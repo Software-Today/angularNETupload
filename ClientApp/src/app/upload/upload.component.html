@@ -1,5 +1,32 @@
 <h1>File Upload Using Angular 5 and ASP.NET Core 2.1</h1>
-<input #file type="file" accept=".txt" multiple (change)="upload(file.files)" />
+<input id="file" #file type="file" multiple (change)="upload(file.files)" [accept]="typeChecker" />
+
+<div class ="set_section">
+  <div class="set_file_type">
+    <h3>File Type-Set Section</h3>
+    <label>
+      <input type="radio" name="file" value="'video'" [(ngModel)]="fileType" (change)="change('video')"> Video
+    </label>
+    <label>
+      <input type="radio" name="file" value="'pdf'" [(ngModel)]="fileType" (change)="change('pdf')"> Pdf
+    </label>
+    <label>
+      <input type="radio" name="file" value="'image'"[(ngModel)]="fileType" (change)="change('image')"> Image
+    </label>
+  </div>
+  <div class ="set_file_size">
+    <h3>File Size-Set Section (Default(Minimum-Size: 2048Mbyte) : (Maximum-Size: 4096Mbyte))</h3>
+    <label>
+      Minimum-Size(Mbyte):
+      <input type="text" name="file" value="2048" [(ngModel)]="fMiniSize"> 
+    </label>
+    <label>
+      Maximum-Size(Mbyte):
+      <input type="text" name="file" value="4096" [(ngModel)]="fMaxSize">
+    </label>
+  </div>
+</div>
+
 <br/>
 <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
   {{progress}}%

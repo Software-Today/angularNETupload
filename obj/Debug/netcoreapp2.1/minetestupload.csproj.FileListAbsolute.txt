@@ -10,7 +10,6 @@ E:\ccc\testupload\mineupload\minetestupload\bin\Debug\netcoreapp2.1\minetestuplo
 E:\ccc\testupload\mineupload\minetestupload\bin\Debug\netcoreapp2.1\minetestupload.Views.pdb
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.AssemblyInfoInputs.cache
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.AssemblyInfo.cs
-E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.csproj.CoreCompileInputs.cache
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.RazorAssemblyInfo.cache
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.RazorAssemblyInfo.cs
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.TagHelpers.input.cache
@@ -25,3 +24,5 @@ E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestuplo
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.pdb
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.genruntimeconfig.cache
 E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.csproj.CopyComplete
+E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.csproj.CoreCompileInputs.cache
+E:\ccc\testupload\mineupload\minetestupload\obj\Debug\netcoreapp2.1\minetestupload.csprojAssemblyReference.cache

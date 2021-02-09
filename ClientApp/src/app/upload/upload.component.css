@@ -1,0 +1,14 @@
+
+
+.set_section{
+    display: flex;
+}
+.set_file_type,
+.set_file_size{
+    margin:30px;
+    padding:10px;
+}
+
+label{
+    padding:10px;
+}

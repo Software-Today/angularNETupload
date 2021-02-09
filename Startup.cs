@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using minetestupload.Models;
 
 namespace minetestupload
 {
@@ -20,8 +22,14 @@ namespace minetestupload
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            //Getting Connection String from appsettings.json
+            var connection = Configuration.GetConnectionString("DatabaseConnection");
+
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
+            // OR
+            //services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection, b => b.UseRowNumberForPaging()));
+            services.AddMvc();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

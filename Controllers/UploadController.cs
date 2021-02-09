@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Net.Http.Headers;
+using minetestupload.Models;
 
 namespace minetestupload.Controllers
 {
@@ -15,11 +16,16 @@ namespace minetestupload.Controllers
     [ApiController]
     public class UploadController : Controller
     {
-        private IHostingEnvironment _hostingEnvironment;
+        //private IHostingEnvironment _hostingEnvironment;
 
-        public UploadController(IHostingEnvironment hostingEnvironment)
+        //public UploadController(IHostingEnvironment hostingEnvironment)
+        //{
+        //    _hostingEnvironment = hostingEnvironment;
+        //}
+        private readonly DatabaseContext _context;
+        public UploadController(DatabaseContext context)
         {
-            _hostingEnvironment = hostingEnvironment;
+            _context = context;
         }
 
         [HttpPost, DisableRequestSizeLimit]
@@ -27,9 +33,11 @@ namespace minetestupload.Controllers
         {
             try
             {
+                string startupPath = System.IO.Directory.GetCurrentDirectory();
                 var file = Request.Form.Files[0];
+
                 string folderName = "Upload";
-                string webRootPath = _hostingEnvironment.WebRootPath;
+                string webRootPath = startupPath;
                 string newPath = Path.Combine(webRootPath, folderName);
                 if (!Directory.Exists(newPath))
                 {
@@ -43,7 +51,25 @@ namespace minetestupload.Controllers
                     {
                         file.CopyTo(stream);
                     }
+
+                    var objfiles = new Files()
+                    {
+                        DocumentId = 0,
+                        Name = fileName,
+                        FileSize = file.Length.ToString(),
+                        CreatedOn = DateTime.Now
+                    };
+
+                    using (var target = new MemoryStream())
+                    {
+                        file.CopyTo(target);
+                        objfiles.DataFiles = target.ToArray();
+                    }
+
+                    _context.Files.Add(objfiles);
+                    _context.SaveChanges();
                 }
+
                 return Json("Upload Successful.");
             }
             catch (System.Exception ex)

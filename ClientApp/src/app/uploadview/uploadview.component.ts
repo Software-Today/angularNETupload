@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http'
 
 @Component({
@@ -8,9 +8,21 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/c
 })
 export class UploadviewComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  public fproperties: FileProperties[];
+
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<FileProperties[]>(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
+      this.fproperties = result;
+    }, error => console.error(error));
+  }
 
   ngOnInit() {
   }
 
+}
+
+interface FileProperties {
+  filename: string;
+  filesize: number;
+  uploaddate: string;
 }
