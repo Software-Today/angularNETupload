@@ -52,6 +52,7 @@ export class UploadComponent implements OnInit {
     const formData = new FormData();
     for (let file of files)
       formData.append(file.name, file);
+    console.log(formData);
 
     const uploadReq = new HttpRequest('POST', `api/upload`, formData, {
       reportProgress: true,

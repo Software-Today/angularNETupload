@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,700);
+
+
+.container {
+  padding: 50px;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+$tableBorderColor: black;
+
+th {
+  text-align: left;
+  border-bottom: 2px solid $tableBorderColor;
+  border-top: 0;
+}
+
+td {
+  border-top: 1px solid $tableBorderColor;
+}
+
+td, th {
+  padding: 8px;
+}

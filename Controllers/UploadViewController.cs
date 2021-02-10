@@ -23,44 +23,20 @@ namespace minetestupload.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        [HttpGet, DisableRequestSizeLimit]
+        public ActionResult UploadView()
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Index(IFormFile files)
-        {
-            if (files != null)
+            try
             {
-                if (files.Length > 0)
-                {
-                    //Getting FileName
-                    var fileName = Path.GetFileName(files.FileName);
-                    //Getting file Extension
-                    var fileExtension = Path.GetExtension(fileName);
-                    // concatenating  FileName + FileExtension
-                    var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+                var products = (from p in _context.Files
+                select new {p.DocumentId, p.Name, p.FileSize, p.CreatedOn}).ToList();
 
-                    var objfiles = new Files()
-                    {
-                        DocumentId = 0,
-                        Name = newFileName,
-                        FileSize = files.Length.ToString(),
-                        CreatedOn = DateTime.Now
-                    };
-
-                    using (var target = new MemoryStream())
-                    {
-                        files.CopyTo(target);
-                        objfiles.DataFiles = target.ToArray();
-                    }
-
-                    _context.Files.Add(objfiles);
-                    _context.SaveChanges();
-
-                }
+                return Json(products);
             }
-            return View();
+            catch (System.Exception ex)
+            {
+                return Json("View Failed: " + ex.Message);
+            }
         }
     }
 }

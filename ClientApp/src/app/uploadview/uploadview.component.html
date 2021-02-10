@@ -1,3 +1,18 @@
-<p>
-  uploadview works!
-</p>
+<div ng-app="app" ng-controller="Controller as vm" class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>File ID</th>
+          <th>File Name</th>
+          <th>File Size(KByte)</th>
+          <th>File Upload Date</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let row of fproperties">
+        <td>{{row.documentId}}</td>
+        <td>{{row.name}}</td>
+        <td>{{row.fileSize}}</td>
+        <td>{{row.createdOn}}</td>
+      </tr>
+    </table>
+</div>
